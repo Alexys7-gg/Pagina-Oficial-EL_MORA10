@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#080b0a">
+
+    <title>EL MORA10 | Streamer</title>
+
+    <style>
+        :root {
+            --fondo: #080b0a;
+            --panel: #111715;
+            --verde: #53fc18;
+            --blanco: #f5f8f5;
+            --gris: #a7b2aa;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--fondo);
+            color: var(--blanco);
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .contenedor {
+            width: 90%;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        header {
+            padding: 22px 0;
+            border-bottom: 1px solid #263029;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo {
+            font-size: 23px;
+            font-weight: 900;
+        }
+
+        .logo span,
+        .verde {
+            color: var(--verde);
+        }
+
+        nav {
+            display: flex;
+            gap: 22px;
+        }
+
+        nav a:hover {
+            color: var(--verde);
+        }
+
+        .boton {
+            display: inline-block;
+            background: var(--verde);
+            color: #080b0a;
+            padding: 13px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        .boton:hover {
+            transform: translateY(-3px);
+        }
+
+        .boton-secundario {
+            background: transparent;
+            color: white;
+            border: 1px solid #465148;
+        }
+
+        .hero {
+            min-height: 520px;
+            padding: 80px 0;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .etiqueta {
+            color: var(--verde);
+            font-size: 13px;
+            font-weight: bold;
+            letter-spacing: 3px;
+        }
+
+        h1 {
+            font-size: clamp(60px, 9vw, 105px);
+            line-height: 0.95;
+            margin: 25px 0;
+        }
+
+        .hero p {
+            color: var(--gris);
+            font-size: 17px;
+            line-height: 1.8;
+            max-width: 520px;
+        }
+
+        .botones {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 28px;
+        }
+
+        .arte {
+            min-height: 320px;
+            border: 1px solid #315126;
+            border-radius: 25px;
+            background: linear-gradient(
+                145deg,
+                #19301a,
+                #101511,
+                #080b0a
+            );
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .arte::before {
+            content: "";
+            position: absolute;
+            width: 260px;
+            height: 260px;
+            border: 2px solid #315126;
+            border-radius: 50%;
+        }
+
+        .monograma {
+            font-size: 90px;
+            font-weight: 900;
+            z-index: 1;
+        }
+
+        .monograma span {
+            color: var(--verde);
+        }
+
+        .etiqueta-arte {
+            position: absolute;
+            bottom: 20px;
+            font-size: 12px;
+            color: var(--gris);
+            letter-spacing: 2px;
+        }
+
+        section.contenido {
+            padding: 65px 0;
+        }
+
+        .titulo-seccion {
+            font-size: 38px;
+            margin: 12px 0;
+        }
+
+        .descripcion {
+            color: var(--gris);
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+
+        .tarjetas {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .tarjeta {
+            background: var(--panel);
+            border: 1px solid #29332b;
+            padding: 30px;
+            border-radius: 18px;
+            transition: 0.2s;
+        }
+
+        .tarjeta:hover {
+            border-color: var(--verde);
+            transform: translateY(-4px);
+        }
+
+        .icono {
+            font-size: 32px;
+        }
+
+        .tarjeta h3 {
+            font-size: 25px;
+            margin: 20px 0 12px;
+        }
+
+        .tarjeta p {
+            color: var(--gris);
+            line-height: 1.7;
+            margin-bottom: 22px;
+        }
+
+        .enlace {
+            color: var(--verde);
+            font-weight: bold;
+        }
+
+        .sobre {
+            display: grid;
+            grid-template-columns: 0.7fr 1.3fr;
+            gap: 25px;
+        }
+
+        .bloque-verde {
+            background: var(--verde);
+            color: #080b0a;
+            border-radius: 18px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 240px;
+        }
+
+        .bloque-verde strong {
+            font-size: 38px;
+        }
+
+        .texto-sobre {
+            background: var(--panel);
+            border: 1px solid #29332b;
+            border-radius: 18px;
+            padding: 30px;
+        }
+
+        .texto-sobre h2 {
+            font-size: 28px;
+            margin: 15px 0;
+        }
+
+        .texto-sobre p {
+            color: var(--gris);
+            line-height: 1.8;
+        }
+
+        footer {
+            border-top: 1px solid #29332b;
+            padding: 30px 0;
+            color: var(--gris);
+        }
+
+        .pie {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .redes {
+            display: flex;
+            gap: 18px;
+        }
+
+        .redes a:hover {
+            color: var(--verde);
+        }
+
+        @media (max-width: 700px) {
+            header {
+                flex-wrap: wrap;
+            }
+
+            nav {
+                width: 100%;
+                justify-content: space-between;
+                gap: 10px;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                padding: 55px 0;
+            }
+
+            .arte {
+                min-height: 260px;
+            }
+
+            .tarjetas,
+            .sobre {
+                grid-template-columns: 1fr;
+            }
+
+            .titulo-seccion {
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="contenedor">
+        <a href="#inicio" class="logo">
+            EL <span>MORA10</span>
+        </a>
+
+        <nav>
+            <a href="#inicio">Inicio</a>
+            <a href="#contenido">Contenido</a>
+            <a href="#sobre">Sobre mí</a>
+        </nav>
+
+        <a
+            class="boton"
+            href="https://kick.com/el-mora10"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            Ver canal ↗
+        </a>
+    </header>
+
+    <main>
+
+        <section class="hero contenedor" id="inicio">
+
+            <div>
+                <div class="etiqueta">
+                    CREADOR DE CONTENIDO
+                </div>
+
+                <h1>
+                    EL MORA<span class="verde">10.</span>
+                </h1>
+
+                <p>
+                    ¡Bienvenido a mi espacio! Aquí encontrarás
+                    mis directos y contenido. Visita mis redes
+                    sociales y forma parte de la comunidad.
+                </p>
+
+                <div class="botones">
+                    <a
+                        class="boton"
+                        href="https://kick.com/el-mora10"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        ▶ Entrar a Kick
+                    </a>
+
+                    <a
+                        class="boton boton-secundario"
+                        href="https://www.tiktok.com/@el_mora10_"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        ♪ Ver TikTok
+                    </a>
+                </div>
+            </div>
+
+            <div class="arte">
+                <div class="monograma">
+                    M<span>10</span>
+                </div>
+
+                <div class="etiqueta-arte">
+                    STREAMS · CLIPS · COMUNIDAD
+                </div>
+            </div>
+
+        </section>
+
+        <section class="contenido contenedor" id="contenido">
+
+            <div class="etiqueta">
+                ENCUÉNTRAME ONLINE
+            </div>
+
+            <h2 class="titulo-seccion">
+                Conéctate conmigo
+            </h2>
+
+            <p class="descripcion">
+                Visita mis plataformas oficiales para
+                descubrir mi contenido.
+            </p>
+
+            <div class="tarjetas">
+
+                <a
+                    class="tarjeta"
+                    href="https://kick.com/el-mora10"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    <div class="icono">▶</div>
+
+                    <h3>Directos en Kick</h3>
+
+                    <p>
+                        Visita el canal de EL MORA10 para
+                        encontrar sus transmisiones y clips.
+                    </p>
+
+                    <span class="enlace">
+                        Abrir canal ↗
+                    </span>
+                </a>
+
+                <a
+                    class="tarjeta"
+                    href="https://www.tiktok.com/@el_mora10_"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    <div class="icono">♪</div>
+
+                    <h3>Videos en TikTok</h3>
+
+                    <p>
+                        Entra al perfil para ver sus videos
+                        y seguir su cuenta.
+                    </p>
+
+                    <span class="enlace">
+                        Abrir TikTok ↗
+                    </span>
+                </a>
+
+            </div>
+        </section>
+
+        <section class="contenido contenedor" id="sobre">
+
+            <div class="sobre">
+
+                <div class="bloque-verde">
+                    <span>EL MORA10</span>
+
+                    <strong>
+                        Gracias por el apoyo.
+                    </strong>
+
+                    <span>LA COMUNIDAD PRIMERO</span>
+                </div>
+
+                <div class="texto-sobre">
+
+                    <div class="etiqueta">
+                        SOBRE EL CANAL
+                    </div>
+
+                    <h2>
+                        ¡Bienvenido a la comunidad!
+                    </h2>
+
+                    <p>
+                        Esta página reúne los enlaces principales
+                        de EL MORA10 para que puedas encontrar
+                        su contenido fácilmente. Síguelo en Kick
+                        y TikTok para estar al tanto de sus
+                        publicaciones y transmisiones.
+                    </p>
+
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="contenedor pie">
+
+            <div>
+                <strong>EL MORA10</strong>
+                · Página de comunidad
+            </div>
+
+            <div class="redes">
+                <a
+                    href="https://kick.com/el-mora10"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Kick ↗
+                </a>
+
+                <a
+                    href="https://www.tiktok.com/@el_mora10_"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    TikTok ↗
+                </a>
+            </div>
+
+            <div>
+                © <span id="year"></span> EL MORA10
+            </div>
+
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById("year").textContent =
+            new Date().getFullYear();
+    </script>
+
+</body>
+</html>
+```
